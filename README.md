@@ -1,5 +1,7 @@
 # Portfolio
 
+**Live:** https://portfolio-fastapi-569x.onrender.com (Render free tier; the first request after idle can take ~50 s)
+
 A small FastAPI + Jinja2 portfolio site. Each project has a problem/solution write-up, a demo recording slot, live and code links, and its stack.
 
 ## Edit the content
