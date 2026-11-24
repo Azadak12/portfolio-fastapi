@@ -1,0 +1,11 @@
+{
+  "name": "Abdul Kalam",
+  "role": "Python & AI Developer",
+  "tagline": "I build FastAPI backends and AI-powered products, from the data model to the deployed link.",
+  "about": "I build full-stack products with a Python/FastAPI core: authenticated APIs, PostgreSQL data models, background workers and LLM-driven features. Below are projects that show the problem each one solves, how I solved it, the stack, and a way to try or watch it.",
+  "links": {
+    "github": "https://github.com/Azadak12",
+    "linkedin": "",
+    "email": ""
+  }
+}

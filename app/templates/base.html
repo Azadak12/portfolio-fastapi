@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ profile.name }} · {{ profile.role }}{% endblock %}</title>
+  <meta name="description" content="{{ profile.tagline }}">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/">{{ profile.name }}</a>
+    <nav>
+      <a href="/#projects">Projects</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </header>
+  <main>{% block content %}{% endblock %}</main>
+  <footer id="contact" class="site-footer">
+    <p>{{ profile.name }} · {{ profile.role }}</p>
+    <p class="links">
+      {% if profile.links.github %}<a href="{{ profile.links.github }}" rel="noopener">GitHub</a>{% endif %}
+      {% if profile.links.linkedin %}<a href="{{ profile.links.linkedin }}" rel="noopener">LinkedIn</a>{% endif %}
+      {% if profile.links.email %}<a href="mailto:{{ profile.links.email }}">Email</a>{% endif %}
+    </p>
+    <p class="small">Built with FastAPI and Jinja2. API docs: <a href="/api/docs">/api/docs</a></p>
+  </footer>
+</body>
+</html>

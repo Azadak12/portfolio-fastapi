@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}{{ project.title }} · {{ profile.name }}{% endblock %}
+{% block content %}
+<article class="project">
+  <p><a href="/#projects">&larr; All projects</a></p>
+  <div class="card-top">
+    <h1>{{ project.title }}</h1>
+    <span class="badge">{{ project.status }}</span>
+  </div>
+  <p class="lead">{{ project.summary }}</p>
+
+  <p class="actions">
+    {% if project.links.live %}<a class="btn" href="{{ project.links.live }}" rel="noopener">Open live demo</a>{% endif %}
+    {% if project.links.code %}<a class="btn ghost" href="{{ project.links.code }}" rel="noopener">View code</a>{% endif %}
+  </p>
+  {% if project.note %}<p class="note">{{ project.note }}</p>{% endif %}
+
+  <section>
+    <h2>Demo recording</h2>
+    {% if project.video.type == "embed" and project.video.src %}
+      <div class="video"><iframe src="{{ project.video.src }}" title="{{ project.title }} demo" allowfullscreen loading="lazy"></iframe></div>
+    {% elif project.video.type == "file" and project.video.src %}
+      <video class="video" controls preload="metadata" src="{{ project.video.src }}"></video>
+    {% else %}
+      <div class="video placeholder">Demo recording coming soon</div>
+    {% endif %}
+  </section>
+
+  <section>
+    <h2>The problem</h2>
+    {% for para in project.problem %}<p>{{ para }}</p>{% endfor %}
+  </section>
+
+  <section>
+    <h2>The solution</h2>
+    {% for para in project.solution %}<p>{{ para }}</p>{% endfor %}
+  </section>
+
+  <section>
+    <h2>What's interesting technically</h2>
+    <ul>{% for h in project.highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+  </section>
+
+  <section>
+    <h2>Stack</h2>
+    <ul class="chips">{% for s in project.stack %}<li>{{ s }}</li>{% endfor %}</ul>
+  </section>
+
+  <section>
+    <h2>More projects</h2>
+    <ul class="more">{% for o in others %}<li><a href="/projects/{{ o.slug }}">{{ o.title }}</a> &mdash; {{ o.summary }}</li>{% endfor %}</ul>
+  </section>
+</article>
+{% endblock %}

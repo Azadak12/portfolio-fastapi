@@ -1,0 +1,96 @@
+[
+  {
+    "slug": "roadmora-ai",
+    "title": "Roadmora AI",
+    "summary": "AI career guidance: answer an assessment, get a career field, market analysis and a step-by-step learning roadmap.",
+    "status": "Prototype",
+    "featured": true,
+    "problem": [
+      "Students and career switchers often don't know which field fits them or what to learn first. Generic advice isn't tailored, and building a roadmap by hand takes research most people never do.",
+      "AI answers are also messy to use in an app: models return text, sometimes wrapped in code fences, sometimes with the wrong JSON shape."
+    ],
+    "solution": [
+      "A user signs in, completes an assessment, and the FastAPI backend forwards it to an AI engine (an n8n workflow) and returns a structured result: a recommended career field, a market analysis and a learning roadmap.",
+      "The backend verifies the user's token on every request, defensively parses the AI response (fixing malformed JSON and unwrapping code fences) and saves each result to Supabase against that user so they can come back to it."
+    ],
+    "highlights": [
+      "Authenticated FastAPI endpoint with dependency-injected user verification",
+      "Robust parser that turns inconsistent LLM output into a stable schema",
+      "Clear error handling: upstream AI failures return a 502 instead of a crash",
+      "Per-user result history stored in Supabase"
+    ],
+    "stack": ["Python", "FastAPI", "httpx", "Supabase", "n8n", "React", "Vite"],
+    "links": {"code": "https://github.com/Azadak12/Roadmora-AI-FYP", "live": ""},
+    "video": {"type": "", "src": ""}
+  },
+  {
+    "slug": "sinkdein",
+    "title": "Sinkdein",
+    "summary": "A community web app for sharing setbacks and what people learned, built around consent, privacy and safety.",
+    "status": "Work in progress",
+    "featured": true,
+    "problem": [
+      "Most social platforms reward polish and reach. People rarely share failures openly, because a post can be seen by the wrong audience, a stranger can message them, or it is hard to take back.",
+      "That makes privacy rules, not features, the hard part: who may see what, who may message whom, and what happens after a block or a privacy change."
+    ],
+    "solution": [
+      "A FastAPI + PostgreSQL backend with one shared authorization layer. Visibility rules run in SQL before pagination, so feeds, search, reposts and notifications can't show what a detail page would hide.",
+      "Messaging is consent-based with real-time delivery over WebSockets, a background worker handles notifications and media processing, and moderators work through audited cases with TOTP step-up."
+    ],
+    "highlights": [
+      "PostgreSQL doubles as the job queue (SKIP LOCKED leases, transactional outbox)",
+      "Idempotent writes with retry keys and versioning; concurrency tests for follow, approve and block races",
+      "Private media gateway that rechecks permission on every file request",
+      "42 backend tests and 14 browser tests; migrations with Alembic"
+    ],
+    "stack": ["Python", "FastAPI", "SQLAlchemy", "Alembic", "PostgreSQL", "WebSockets", "Next.js", "TypeScript", "Docker", "Render", "Supabase"],
+    "links": {"code": "", "live": "https://sinkdein-demo.onrender.com"},
+    "note": "The live demo is a private build with synthetic data behind an access password. Credentials are available on request. The free instance can take about a minute to wake up.",
+    "video": {"type": "", "src": ""}
+  },
+  {
+    "slug": "graph8-revenue-learning",
+    "title": "Graph8 Revenue Learning",
+    "summary": "Win/loss intelligence: turns every closed deal into evidence-backed lessons and warnings on similar open deals.",
+    "status": "Demo",
+    "featured": true,
+    "problem": [
+      "CRMs record that a deal was won or lost, but rarely turn that history into learning. Different reps lose near-identical deals to the same gap, and \"Lost - pricing\" in a dropdown is never examined.",
+      "Won deals are usually ignored, even though they are the control group needed to tell a real cause from background noise."
+    ],
+    "solution": [
+      "A module that gathers evidence when a deal closes, uses a structured-output LLM step to extract candidate factors, and compares won against lost deals with deterministic pattern detection.",
+      "Recommendations go to the owning department and need human approval before anything is written back, and active deals that resemble past losses get contextual warnings."
+    ],
+    "highlights": [
+      "Evidence-backed investigations rather than free-text summaries",
+      "Won-versus-lost comparison to avoid false patterns",
+      "Human approval gate before any write-back to the CRM"
+    ],
+    "stack": ["TypeScript", "Next.js", "LLM structured output", "Vercel"],
+    "links": {"code": "https://github.com/Azadak12/graph8-revenue-learning", "live": "https://nextapp-rlpz.vercel.app/overview"},
+    "video": {"type": "", "src": ""}
+  },
+  {
+    "slug": "bookwell",
+    "title": "Bookwell",
+    "summary": "A multi-niche booking platform: one engine, ten trades, where a niche is configuration rather than code.",
+    "status": "Live",
+    "featured": false,
+    "problem": [
+      "Every trade (salons, clinics, tutors and others) needs bookings, but each speaks a different language and runs a different workflow. Building one app per trade doesn't scale."
+    ],
+    "solution": [
+      "A single booking engine where a business picks its niche at signup and gets a dashboard in its own vocabulary, its own workflow, and a public booking page to share.",
+      "Built to three rules: niches are configuration, every booking starts as pending and gets confirmed, and nothing assumes a currency, country or date format."
+    ],
+    "highlights": [
+      "Niche-as-configuration design instead of per-niche code",
+      "Pending-to-confirmed booking lifecycle from day one",
+      "Public booking pages per business"
+    ],
+    "stack": ["TypeScript", "Node.js", "PostgreSQL", "Vercel"],
+    "links": {"code": "", "live": "https://bookwell-black.vercel.app"},
+    "video": {"type": "", "src": ""}
+  }
+]
